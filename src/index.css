@@ -73,3 +73,8 @@ body {
   font-size: 11px;
   color: var(--text-secondary);
 }
+
+/* Safe-area bottom padding for iOS home bar */
+.safe-bottom {
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+}

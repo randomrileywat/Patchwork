@@ -13,7 +13,7 @@ export default function Sidebar() {
   const { totalXP, currentStreak, reviewQueue } = useProgressStore();
 
   return (
-    <aside className="w-64 shrink-0 h-screen sticky top-0 border-r border-[var(--border)] bg-[var(--bg-surface)] flex flex-col">
+    <aside className="hidden md:flex w-64 shrink-0 h-screen sticky top-0 border-r border-[var(--border)] bg-[var(--bg-surface)] flex-col">
       <div className="p-5 flex items-center gap-3 border-b border-[var(--border)]">
         <svg viewBox="0 0 32 32" className="w-8 h-8">
           <path

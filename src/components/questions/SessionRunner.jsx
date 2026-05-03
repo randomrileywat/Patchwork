@@ -115,8 +115,8 @@ export default function SessionRunner({
 
   return (
     <div className="relative" ref={containerRef}>
-      <div className="flex items-center justify-between mb-5">
-        <div className="flex items-center gap-3">
+      <div className="flex items-start justify-between mb-5 gap-3">
+        <div className="flex flex-wrap items-center gap-2">
           <span className="label-mono">Question {index + 1} / {questions.length}</span>
           <span className="text-[10px] font-mono px-2 py-0.5 rounded border border-[var(--border)] text-[var(--text-secondary)]">
             {q.domain.toUpperCase()} · {q.subtopic}
