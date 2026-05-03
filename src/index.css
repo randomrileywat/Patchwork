@@ -1,0 +1,75 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bg-base:        #0d0f14;
+  --bg-surface:     #161920;
+  --bg-elevated:    #1e222d;
+  --border:         #2a2f3d;
+  --border-accent:  #3d4560;
+  --text-primary:   #e8eaf0;
+  --text-secondary: #8b92a8;
+  --text-muted:     #4a5068;
+  --accent-teal:    #00d4a8;
+  --accent-amber:   #f5a623;
+  --accent-coral:   #ff6b6b;
+  --accent-blue:    #4a9eff;
+  --accent-purple:  #9b7dff;
+  --mastery-0:      #2a2f3d;
+  --mastery-1:      #5a3e2b;
+  --mastery-2:      #3d4a2a;
+  --mastery-3:      #1a4a3a;
+  --mastery-4:      #00d4a8;
+}
+
+html, body, #root {
+  height: 100%;
+  background: var(--bg-base);
+  color: var(--text-primary);
+  font-family: 'IBM Plex Sans', system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+body {
+  margin: 0;
+}
+
+/* Flashcard 3D flip */
+.flip-card {
+  perspective: 1200px;
+}
+.flip-inner {
+  transition: transform 0.55s cubic-bezier(0.4, 0.0, 0.2, 1);
+  transform-style: preserve-3d;
+  position: relative;
+}
+.flip-inner[data-flipped="true"] {
+  transform: rotateY(180deg);
+}
+.flip-face {
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+.flip-back {
+  transform: rotateY(180deg);
+  position: absolute;
+  inset: 0;
+}
+
+/* Scrollbar (subtle dark) */
+*::-webkit-scrollbar { width: 10px; height: 10px; }
+*::-webkit-scrollbar-track { background: var(--bg-base); }
+*::-webkit-scrollbar-thumb { background: var(--border); border-radius: 6px; }
+*::-webkit-scrollbar-thumb:hover { background: var(--border-accent); }
+
+/* Custom utilities */
+.surface { background: var(--bg-surface); border: 1px solid var(--border); border-radius: 0.75rem; }
+.surface-elevated { background: var(--bg-elevated); border: 1px solid var(--border); border-radius: 0.75rem; }
+.label-mono {
+  font-family: 'JetBrains Mono', monospace;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-size: 11px;
+  color: var(--text-secondary);
+}
