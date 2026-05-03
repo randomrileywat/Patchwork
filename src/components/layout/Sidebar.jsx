@@ -105,7 +105,7 @@ export default function Sidebar() {
       </nav>
 
       <div className="p-3 border-t border-[var(--border)] flex items-center gap-3">
-        <UserButton appearance={clerkDarkAppearance} afterSignOutUrl="/" />
+        <UserButton appearance={clerkDarkAppearance} afterSignOutUrl="https://rileywatson.dev/patchwork/" />
         <div className="flex-1 min-w-0">
           <div className="text-xs text-[var(--text-primary)] truncate">
             {user?.username || user?.primaryEmailAddress?.emailAddress?.split('@')[0] || 'You'}

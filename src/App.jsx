@@ -1,5 +1,5 @@
 import { Routes, Route, Navigate } from 'react-router-dom';
-import { SignedIn, SignedOut, SignIn, SignUp } from '@clerk/clerk-react';
+import { SignedIn, SignedOut, SignIn } from '@clerk/clerk-react';
 import AppShell from './components/layout/AppShell.jsx';
 import Dashboard from './views/Dashboard.jsx';
 import PracticeSession from './views/PracticeSession.jsx';
@@ -46,10 +46,7 @@ export default function App() {
                 <div className="text-[10px] uppercase tracking-widest text-[var(--text-muted)]">Adaptive Study</div>
               </div>
             </div>
-            <Routes>
-              <Route path="/sign-up" element={<SignUp appearance={clerkDarkAppearance} routing="hash" signInUrl="https://rileywatson.dev/patchwork/#/" />} />
-              <Route path="*" element={<SignIn appearance={clerkDarkAppearance} routing="hash" signUpUrl="https://rileywatson.dev/patchwork/#/sign-up" />} />
-            </Routes>
+            <SignIn appearance={clerkDarkAppearance} routing="hash" />
           </div>
         </div>
       </SignedOut>
