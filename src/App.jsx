@@ -47,8 +47,8 @@ export default function App() {
               </div>
             </div>
             <Routes>
-              <Route path="/sign-up" element={<SignUp appearance={clerkDarkAppearance} routing="hash" signInUrl="/#/" />} />
-              <Route path="*" element={<SignIn appearance={clerkDarkAppearance} routing="hash" signUpUrl="/#/sign-up" />} />
+              <Route path="/sign-up" element={<SignUp appearance={clerkDarkAppearance} routing="hash" signInUrl="https://rileywatson.dev/patchwork/#/" />} />
+              <Route path="*" element={<SignIn appearance={clerkDarkAppearance} routing="hash" signUpUrl="https://rileywatson.dev/patchwork/#/sign-up" />} />
             </Routes>
           </div>
         </div>
