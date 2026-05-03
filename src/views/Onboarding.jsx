@@ -11,7 +11,7 @@ import SessionRunner from '../components/questions/SessionRunner.jsx';
 // Excludes drag-match (too complex as a first impression).
 function pickStarterQuestions(certId, count = 10) {
   const pool = allQuestions.filter(
-    (q) => q.certification === certId && q.type !== 'drag-match'
+    (q) => q.certification === certId && q.type !== 'drag-match' && q.type !== 'flashcard'
   );
 
   // Group by subtopic, shuffle within each group

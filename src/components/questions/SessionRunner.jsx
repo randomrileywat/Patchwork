@@ -1,8 +1,7 @@
 // Reusable session runner — used by Practice, Arena, and Review (single-question mode).
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, useMemo } from 'react';
 import { Flag, SkipForward, AlertTriangle } from 'lucide-react';
 import MultipleChoice from './MultipleChoice.jsx';
-import Flashcard from './Flashcard.jsx';
 import Scenario from './Scenario.jsx';
 import DragMatch from './DragMatch.jsx';
 import CommentThread from './CommentThread.jsx';
@@ -10,12 +9,37 @@ import ReportModal from './ReportModal.jsx';
 import ProgressRing from '../shared/ProgressRing.jsx';
 import XPToast from '../shared/XPToast.jsx';
 import { useProgressStore } from '../../store/progressStore.js';
+import allQuestions from '../../data/questions.json';
+
+// Adapts a flashcard (front/back) into a 4-option MC question.
+const flashcardPool = allQuestions.filter((q) => q.type === 'flashcard' && q.back);
+const LETTERS = ['A', 'B', 'C', 'D'];
+
+function FlashcardAsQuestion({ question, onAnswered }) {
+  const adapted = useMemo(() => {
+    const distractors = flashcardPool
+      .filter((q) => q.id !== question.id)
+      .sort(() => Math.random() - 0.5)
+      .slice(0, 3)
+      .map((q) => q.back);
+    const answers = [...distractors, question.back].sort(() => Math.random() - 0.5);
+    const correctLetter = LETTERS[answers.indexOf(question.back)];
+    return {
+      ...question,
+      type: 'mc',
+      question: question.front,
+      options: answers.map((a, i) => `${LETTERS[i]}. ${a}`),
+      correct: correctLetter,
+    };
+  }, [question.id]); // eslint-disable-line react-hooks/exhaustive-deps
+  return <MultipleChoice question={adapted} onAnswered={onAnswered} />;
+}
 
 const TYPE_COMPONENT = {
   'mc': MultipleChoice,
   'mc-multi': MultipleChoice,
   'scenario': Scenario,
-  'flashcard': Flashcard,
+  'flashcard': FlashcardAsQuestion,
   'drag-match': DragMatch,
 };
 
@@ -150,8 +174,6 @@ export default function SessionRunner({
         {lastXP && <XPToast key={lastXP.key} amount={lastXP.amount} leveledUp={lastXP.leveledUp} />}
         <Component key={q.id} question={q} onAnswered={handleAnswered} />
 
-        {questionState === 'answered' && <CommentThread questionId={q.id} />}
-
         <div className="mt-6 flex items-center justify-between border-t border-[var(--border)] pt-4">
           <div className="flex items-center gap-2 flex-wrap">
             <button onClick={toggleFlag}
@@ -193,6 +215,8 @@ export default function SessionRunner({
           </div>
         </div>
       </div>
+
+      {questionState === 'answered' && <CommentThread questionId={q.id} />}
 
       {reportingId && (
         <ReportModal
