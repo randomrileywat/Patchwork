@@ -17,7 +17,12 @@ if (!CLERK_PUBLISHABLE_KEY) {
 // HashRouter chosen for GitHub Pages compatibility (no 404 on deep links).
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <ClerkProvider publishableKey={CLERK_PUBLISHABLE_KEY} appearance={clerkDarkAppearance}>
+    <ClerkProvider
+        publishableKey={CLERK_PUBLISHABLE_KEY}
+        appearance={clerkDarkAppearance}
+        signInFallbackRedirectUrl="/Patchwork/"
+        signUpFallbackRedirectUrl="/Patchwork/"
+      >
       <HashRouter>
         <App />
       </HashRouter>
