@@ -31,6 +31,10 @@ html, body, #root {
   -webkit-font-smoothing: antialiased;
 }
 
+html {
+  overflow-y: scroll; /* always reserve scrollbar gutter to prevent layout shift */
+}
+
 body {
   margin: 0;
 }
