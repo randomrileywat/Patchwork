@@ -20,8 +20,8 @@ ReactDOM.createRoot(document.getElementById('root')).render(
     <ClerkProvider
         publishableKey={CLERK_PUBLISHABLE_KEY}
         appearance={clerkDarkAppearance}
-        signInFallbackRedirectUrl="https://rileywatson.dev/Patchwork/"
-        signUpFallbackRedirectUrl="https://rileywatson.dev/Patchwork/"
+        signInFallbackRedirectUrl="https://rileywatson.dev/patchwork/"
+        signUpFallbackRedirectUrl="https://rileywatson.dev/patchwork/"
       >
       <HashRouter>
         <App />
