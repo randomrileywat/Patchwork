@@ -22,6 +22,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
         appearance={clerkDarkAppearance}
         signInFallbackRedirectUrl="https://rileywatson.dev/patchwork/"
         signUpFallbackRedirectUrl="https://rileywatson.dev/patchwork/"
+        afterSignOutUrl="https://rileywatson.dev/patchwork/"
       >
       <HashRouter>
         <App />
